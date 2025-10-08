@@ -36,8 +36,8 @@ end
 
 # Generate Sonic Pi code with start/end drum beats
 sonic_code = <<~CODE
-  use_bpm 140
-  use_synth :fm
+  use_bpm 100
+  use_synth :organ_tonewheel
 
   live_loop :secret_jam do
     with_fx :reverb, room: 0.6 do

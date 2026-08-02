@@ -13,6 +13,13 @@ readable as music, not as a payload — unless you hold the private key.
 
 All rights to Sonic Pi are retained by its authors; support the project.
 
+## Status: frozen
+
+This project is **no longer actively developed**. It remains published as the
+historical research artifact it was — a proof of concept that RSA ciphertext
+survives a round-trip through generative audio. No further feature work is
+planned and the repository will not receive updates.
+
 ## How it works
 
 1. `generatekeys.rb` — generates an RSA-2048 keypair (`private.pem` /
@@ -26,22 +33,14 @@ All rights to Sonic Pi are retained by its authors; support the project.
 4. The script prints ready-to-run Sonic Pi source — drum-framed, reverbed —
    that renders the payload as a short generative track.
 
-Decoding (MIDI/audio back to plaintext) is not implemented. That's the
-open problem, not a withheld feature.
+## Limitations (as frozen)
 
-## Status
-
-Proof of concept. No decoder yet, no P2P handshake, no obfuscation beyond
-the harmonic mapping. Treat it as a demonstration that RSA ciphertext
-survives a lossy round-trip through "notes a human would let play in the
-background," not as a hardened channel.
-
-## Roadmap
-
-- Decoder: parse MIDI/WAV/MP3 back to ciphertext, authenticate and decrypt
-  with the recipient's private key.
-- Obfuscation: append junk data to lengthen and vary the note sequence.
-- P2P exchange between two keyholders, with key verification.
+- No decoder: recovering plaintext from rendered audio was never implemented.
+- No P2P handshake or key-exchange mechanism.
+- No obfuscation beyond the optional harmonic mapping.
+- The linear byte-to-note mapping is lossy (`b % 128 + 48` clamped to 127),
+  so not every ciphertext byte survives intact — the harmonic mode is the
+  reliable path.
 
 ## Scope
 
